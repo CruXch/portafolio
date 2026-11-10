@@ -1,0 +1,189 @@
+* {
+  background: #051111;
+  padding: 0;
+  margin: 0;
+
+  /*Con esto las cajas no si tienen 300px y 20px padding no se suma el padding.
+  con box-sizin el tampaño seria: 300px y sin box-sizing serian: 320px(suma padding)*/
+  box-sizing: border-box;
+
+  /*Suaviza al dar scroll*/
+  scroll-behavior: smooth;
+}
+.container-niebla {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+
+  /* Con esto no permite que se salga de la pantalla*/
+  overflow: hidden;
+
+  /* 1 = por encima del fondo y de la imagen (z-index 0), pero
+  por debajo del título y de las secciones (z-index 10). */
+  z-index: 1;
+
+  /* Hace que el contenedor sea "invisible" para el mouse. Como
+  la niebla está encima de todo, sin esto bloquearía clics, hover
+  y selección de texto en lo que hay debajo. */
+  pointer-events: none;
+
+  /* Este mask-image nos ayuda a que en los laterales la niebla
+  se vea completa pero al momento de llegar a la mitad de la pantalla
+  entonces quede casi imperceptible, por eso se ajusta con el selector 
+  rgba, donde en alpha 1 muestra la niebla como es y mientras mas cerca 
+  esté de 0 menos se verá la niebla.
+  Los porcentajes despues de los () Es para ubicar la transparencia en
+  cada sector de la pantalla, */
+  mask-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.6) 10%,
+    rgba(255, 255, 255, 0.3) 35%,
+    rgba(255, 255, 255, 0.3) 65%,
+    rgba(255, 255, 255, 0.6) 90%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.foto-niebla {
+  /* Propiedades COMUNES a las dos capas de niebla. Las que
+  cambian (imagen y velocidad) van en las clases de abajo. */
+  position: absolute;
+
+  /* 100% del alto del contenedor, que es la ventana. */
+  height: 100%;
+
+  /* 300vw = tres veces el ancho de la pantalla. Es más ancha
+  a propósito: la animación la desplaza hacia la izquierda y
+  necesita "material" para mostrar mientras se mueve. */
+  width: 300vw;
+
+  /* Orden dentro del contenedor: ambas capas tienen z-index 2,
+  así que la segunda (que está después en el HTML) queda
+  encima de la primera. */
+  z-index: 2;
+
+  /* Le avisa al navegador que este elemento va a animarse con
+  transform. Así prepara la animación en la GPU de antemano
+  y se ve más fluida. */
+  will-change: transform;
+}
+
+@keyframes movimiento-niebla {
+  /* @keyframes define qué pasa durante la animación.
+  0% es el inicio y 100% el final. */
+  0% {
+    /* translate3d(x, y, z) mueve el elemento sin afectar el
+  resto del layout. Usar la versión 3d (aunque z sea 0) ayuda
+  a que el navegador use la GPU. */
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    /* Se desplaza 200vw a la izquierda. ¿Por qué justo 200vw?
+  La capa mide 300vw y la pantalla 100vw. Al moverla 200vw,
+  el borde derecho de la capa llega exactamente al borde
+  derecho de la pantalla: nunca se ve un hueco vacío. Si
+  movieras más de 200vw, aparecería un espacio sin niebla. */
+    transform: translate3d(-200vw, 0, 0);
+  }
+}
+
+/* Capa MÁS RÁPIDA: da una vuelta en 200 segundos. */
+.niebla-uno {
+  /* Imagen de niebla con transparencia (PNG), por eso se ve el
+  fondo a través de ella. */
+  background: url("../img/niebla-1.png");
+
+  /* repeat-x repite la imagen solo en horizontal, para llenar
+  los 300vw de ancho. */
+  background-repeat: repeat-x;
+
+  /* contain escala la imagen para que quepa completa, sin
+  recortarla. Con repeat-x, esto hace que el alto de la imagen
+  coincida con el alto de la capa y se repita a lo ancho.
+  Quité contain y puse 100vw 100% para que no se vea el corte
+  al terminar la animación, esto hizo estirar un poco la imagen
+  pero no se nota ni genera problemas */
+  background-size: 100vw 100%;
+
+  /* Centra la imagen dentro de la capa. */
+  background-position: center;
+
+  /* movimiento: nombre de la animación (definida arriba con @keyframes).
+  300s: duración de un ciclo completo (muy lenta, para que
+  la niebla se vea sutil).
+  linear: velocidad constante, sin acelerar ni frenar.
+  infinite: se repite para siempre. */
+  animation: movimiento-niebla 200s linear infinite;
+}
+
+/* Capa MÁS LENTA: 500s es el doble de duración */
+.niebla-dos {
+  background: url("../img/niebla-2.png");
+  background-repeat: repeat-x;
+  background-size: 100vh 100%;
+  background-position: center;
+  animation: movimiento-niebla 500s linear infinite;
+}
+
+.img-central {
+  /* relative convierte a imgCentral en el "punto de referencia" de sus hijos.
+  Los elementos con position: absolute de adentro (.imgVentana)
+  se miden y colocan respecto a imgCentral, no respecto a la
+  página completa. Sin esto, se irían a la esquina de la pantalla.
+  Ojo: no le ponemos z-index a propósito. Si se lo pusiéramos, el hero
+  crearía su propio "contexto de apilamiento" y los z-index de sus
+  hijos dejarían de compararse con los de la niebla. */
+  position: relative;
+
+  /* 100vh = 100% del alto de la ventana. El home ocupa
+  exactamente una pantalla completa. */
+  height: 100vh;
+
+  /* Ocupa todo el ancho disponible. */
+  width: 100%;
+}
+
+.img-ventana {
+  /* absolute saca al elemento del flujo normal y lo coloca respecto
+    al hero (por el position: relative de arriba). */
+  position: absolute;
+
+  /* top y left en 0 lo pegan a la esquina superior izquierda de imgCentral. */
+  top: 0;
+  left: 0;
+
+  /* Con 100% de alto y ancho cubre todo imgCentral. Juntos, las cuatro
+    propiedades anteriores hacen que la imagen rellene la sección. */
+  height: 100%;
+  width: 100%;
+
+  /* z-index decide qué queda encima de qué. 0 es la capa baja:
+    la imagen debe quedar DEBAJO de la niebla (z-index 1). */
+  z-index: 0;
+
+  /* Imagen de fondo. La ruta es relativa al archivo CSS, por eso
+    el "../" (sube de la carpeta css/ a la raíz del proyecto). */
+  background: url("../img/ventana.webp");
+
+  /* Centra la imagen dentro del contenedor (50% horizontal; con un
+    solo valor, el vertical también queda en 50%). 
+    Con 95% queda a la izquierda como se ve ahora*/
+  background-position: 95%;
+
+  /* Evita que la imagen se repita como mosaico si es más pequeña
+    que el contenedor. */
+  background-repeat: no-repeat;
+
+  /* cover escala la imagen para llenar TODO el contenedor sin
+    deformarla, recortando lo que sobre. (contain, en cambio, la
+    mostraría completa pero podría dejar espacios vacíos.) */
+  background-size: contain;
+
+  /* Oculta cualquier cosa que se salga del recuadro. Aquí es una
+    medida de seguridad; con cover no debería sobrar nada. */
+  overflow: hidden;
+}
