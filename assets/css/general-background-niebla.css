@@ -1,15 +1,22 @@
-* {
-  background: #051111;
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
-
-  /*Con esto las cajas no si tienen 300px y 20px padding no se suma el padding.
+  /* Con esto las cajas no si tienen 300px y 20px padding no se suma el padding.
   con box-sizin el tampaño seria: 300px y sin box-sizing serian: 320px(suma padding)*/
   box-sizing: border-box;
+}
 
+html {
   /*Suaviza al dar scroll*/
   scroll-behavior: smooth;
 }
+
+body {
+  background: #051111;
+}
+
 .container-niebla {
   position: fixed;
   width: 100%;

@@ -1,0 +1,252 @@
+/* ==========================================================================
+   NAVBAR – David Pérez
+   Estructura del archivo:
+   1. Variables
+   2. Reset local (solo dentro del navbar)
+   3. Barra base
+   4. Info (nombre + cargo)
+   5. Links de navegación
+   6. Icono de GitHub + botón hamburguesa
+   7. Escritorio: efecto al hacer scroll
+   8. Móvil: menú desplegable
+   ========================================================================== */
+
+
+/* 1. VARIABLES ------------------------------------------------------------ */
+:root {
+  --nav-bg: #d16f6f;
+  --nav-bg-scroll: #eb9a9a;
+  --nav-title: #222;
+  --nav-subtitle: #666;
+  --nav-link: #555;
+  --nav-link-hover: #007bff;
+  --nav-icon: aliceblue;
+  --nav-burger: #333;
+  --nav-breakpoint: 768px; /* solo de referencia: las media queries no aceptan variables */
+}
+
+
+/* 2. RESET LOCAL ---------------------------------------------------------- */
+.navbar h1,
+.navbar span,
+.navbar ul,
+.navbar li {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 3. BARRA BASE ----------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 80vw;
+  margin: 15px auto 0;
+  padding: 15px 40px;
+
+  background-color: var(--nav-bg);
+  border-radius: 30px;
+
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* 4. INFO (nombre + cargo) ------------------------------------------------ */
+.nav-info {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease;
+}
+
+.nav-info h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--nav-title);
+}
+
+.nav-info span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--nav-subtitle);
+}
+
+
+/* 5. LINKS DE NAVEGACIÓN -------------------------------------------------- */
+/* Escritorio: centrados de forma absoluta dentro de la barra */
+.nav-links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--nav-link);
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--nav-link-hover);
+}
+
+
+/* 6. ICONO GITHUB + BOTÓN HAMBURGUESA ------------------------------------- */
+.nav-icono {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-logo {
+  transition: opacity 0.3s ease;
+}
+
+.nav-logo a {
+  display: flex; /* evita espacio extra debajo del icono */
+  text-decoration: none;
+}
+
+.nav-logo i {
+  font-size: 40px;
+  color: var(--nav-icon);
+}
+
+/* Oculto en escritorio */
+.menu-barra {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-barra span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--nav-burger);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+
+/* 7. ESCRITORIO: EFECTO AL HACER SCROLL ----------------------------------- */
+/* La clase .con-scroll la agrega el JavaScript */
+@media (min-width: 769px) {
+
+  /* Barra compacta mientras haces scroll */
+  .navbar.con-scroll {
+    width: 60vw;
+    padding: 10px 40px;
+    background-color: var(--nav-bg-scroll);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* El nombre y el logo de GitHub se ocultan */
+  .navbar.con-scroll .nav-info,
+  .navbar.con-scroll .nav-logo {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Al pasar el mouse (o navegar con teclado), la barra se expande
+     y vuelve a mostrar el nombre y el logo */
+  .navbar.con-scroll:hover,
+  .navbar.con-scroll:focus-within {
+    width: 80vw;
+    padding: 15px 40px;
+    background-color: var(--nav-bg);
+  }
+
+  .navbar.con-scroll:hover .nav-info,
+  .navbar.con-scroll:hover .nav-logo,
+  .navbar.con-scroll:focus-within .nav-info,
+  .navbar.con-scroll:focus-within .nav-logo {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+/* 8. MÓVIL: MENÚ DESPLEGABLE ---------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Barra a todo el ancho y sin efectos de scroll/hover */
+  .navbar,
+  .navbar.con-scroll,
+  .navbar.con-scroll:hover {
+    width: 100%;
+    margin-top: 0;
+    padding: 15px 20px;
+    background-color: var(--nav-bg);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .navbar.con-scroll .nav-info {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-logo i {
+    font-size: 40px;
+  }
+
+  .menu-barra {
+    display: flex;
+  }
+
+  /* Menú vertical, cerrado por defecto */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: none;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0;
+
+    background-color: var(--nav-bg);
+    border-radius: 0 0 20px 20px;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden; /* evita que los links se puedan enfocar con el teclado estando cerrado */
+
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease,
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  /* Menú abierto (clase que agrega el JS al tocar la hamburguesa) */
+  .nav-links.active {
+    max-height: 300px;
+    padding: 25px 0;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
