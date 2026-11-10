@@ -187,3 +187,12 @@
     medida de seguridad; con cover no debería sobrar nada. */
   overflow: hidden;
 }
+
+@media (max-width: 768px){
+
+.img-ventana{
+  top: -10%;
+  background-position: center;
+}
+  
+}
