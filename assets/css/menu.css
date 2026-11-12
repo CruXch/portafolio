@@ -9,7 +9,7 @@
    6. ICONO DE GITHUB, CORREO + BOTON HAMBURGUESA
    7. ESCRITORIO: EFECTO AL HACER SCROLL
    8. MÓVIL: MENÚ DESPLEGABLE
-   9. ESCRITORIO: 3ER TIPO DE PANTALLA, MEDIDAS ENTRE: 769PX Y 950PX
+   9. ESCRITORIO: 3ER TIPO DE PANTALLA, MEDIDAS ENTRE: 769PX Y 990PX
    ========================================================================== */
 
 
@@ -23,6 +23,7 @@
   --nav-link: #E4E4E7;
   --nav-link-nombre-hover: #953333;
   --nav-icono: #E4E4E7;
+  --nav-fuente-menu-titulos: "Bellefair", serif;
 }
 
 
@@ -70,7 +71,9 @@
   width: fit-content; /* Toma solo el ancho del nombre y no del div entero para el efecto hover */
   font-size: 1.25rem;
   font-weight: 700;
+  font-size: x-large;
   color: var(--nav-nombre);
+  font-family: var(--nav-fuente-menu-titulos);
 
   /* Creamos un degradado con dos colores:
    el color que aparecerá al pasar el mouse y el color original.
@@ -110,7 +113,9 @@
 .nav-info span {
   font-size: 0.85rem;
   font-weight: 400;
+  font-size: medium;
   color: var(--nav-subtitulo);
+  font-family: var(--nav-fuente-menu-titulos);
 }
 
 
@@ -132,6 +137,9 @@
   text-decoration: none;
   font-weight: 500;
   color: var(--nav-link);
+  font-family: var(--nav-fuente-menu-titulos);
+  font-size: larger;
+  font-weight: 900;
   transition: color 0.3s ease;
   transition: transform 0.3s ease;
 }
@@ -318,8 +326,8 @@
 }
 
 
-/* 9. ESCRITORIO: 3ER TIPO PANTALLA ENTRE 769PX Y 950PX ---------------------------------------------- */
-@media (min-width: 769px) and (max-width: 950px) {
+/* 9. ESCRITORIO: 3ER TIPO PANTALLA ENTRE 769PX Y 990PX ---------------------------------------------- */
+@media (min-width: 769px) and (max-width: 990px) {
   .navbar,
   .navbar.con-scroll:hover {
     width: 95vw;

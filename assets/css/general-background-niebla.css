@@ -1,7 +1,7 @@
 /* ==========================================================================
    Background y general – David Pérez
    Estructura del archivo:
-   1. VARIABLE BG (SOLO DENTRO DEL BACKGROUND)
+   1. VARIABLE BG Y FUENTES
    2. RESET GENERAL Y COLOR BACKGROUND
    3. CONFIGURACIÓN CONTAINER
    4. CONFIGURACIÓN CONTAINER DE NIEBLA E IMAGENES DE NIEBLA
@@ -10,9 +10,16 @@
    ========================================================================== */
 
 
-/* 1. VARIABLE BG  ------------------------------------------------------------ */
+/* 1. VARIABLE BG Y FUENTES  ------------------------------------------------------------ */
 :root {
   --bg-color: #051010;
+}
+
+@font-face {
+  font-family: "Bellefair";
+  src: url(../fonts/Bellefair/Bellefair-Regular.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
 
