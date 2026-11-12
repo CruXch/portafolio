@@ -1,9 +1,43 @@
+/* ==========================================================================
+   Background y general – David Pérez
+   Estructura del archivo:
+   1. VARIABLE BG (SOLO DENTRO DEL BACKGROUND)
+   2. RESET GENERAL Y COLOR BACKGROUND
+   3. CONFIGURACIÓN CONTAINER
+   4. CONFIGURACIÓN CONTAINER DE NIEBLA E IMAGENES DE NIEBLA
+   5. CONFIGURACIÓN DE IMAGEN CENTRAL
+   6. RESPONSIVE DE IMAGEN CENTRAL 
+   ========================================================================== */
+
+
+/* 1. VARIABLE BG  ------------------------------------------------------------ */
+:root {
+  --bg-color: #051010;
+}
+
+
+/* 2. RESET GENERAL Y COLOR BACKGROUND ------------------------------------------------------------ */
+/* El selector * selecciona todos los elementos HTML.
+  ::before y ::after seleccionan los pseudoelementos que CSS
+  permite crear antes y después del contenido de un elemento.
+
+  Por ejemplo, si tenemos un <p>Hola mundo</p>:
+
+  p::before {
+    content: "Hola - ";
+  }
+
+  p::after {
+    content: "!";
+  }
+
+  El resultado visual sería: Hola - Hola mundo! */
 *,
 *::before,
 *::after {
   padding: 0;
   margin: 0;
-  /* Con esto las cajas no si tienen 300px y 20px padding no se suma el padding.
+  /* Con esto las cajas si tienen 300px y 20px padding no se suma el padding.
   con box-sizin el tampaño seria: 300px y sin box-sizing serian: 320px(suma padding)*/
   box-sizing: border-box;
 }
@@ -14,9 +48,11 @@ html {
 }
 
 body {
-  background: #051111;
+  background: var(--bg-color);
 }
 
+
+/* 3. CONFIGURACIÓN CONTAINER ------------------------------------------------------------ */
 .container-niebla {
   position: fixed;
   width: 100%;
@@ -54,6 +90,8 @@ body {
   );
 }
 
+
+/* 4. CONFIGURACIÓN CONTAINER DE NIEBLA E IMAGENES DE NIEBLA ----------------------------------------------- */
 .foto-niebla {
   /* Propiedades COMUNES a las dos capas de niebla. Las que
   cambian (imagen y velocidad) van en las clases de abajo. */
@@ -136,6 +174,8 @@ body {
   animation: movimiento-niebla 500s linear infinite;
 }
 
+
+/* 5. CONFIGURACIÓN DE IMAGEN CENTRAL ----------------------------------------------- */
 .img-central {
   /* relative convierte a imgCentral en el "punto de referencia" de sus hijos.
   Los elementos con position: absolute de adentro (.imgVentana)
@@ -195,6 +235,8 @@ body {
   overflow: hidden;
 }
 
+
+/* 6. RESPONSIVE DE IMAGEN CENTRAL ----------------------------------------------- */
 @media (max-width: 768px){
 
 .img-ventana{

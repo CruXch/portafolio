@@ -1,28 +1,28 @@
 /* ==========================================================================
    NAVBAR – David Pérez
    Estructura del archivo:
-   1. Variables
-   2. Reset local (solo dentro del navbar)
-   3. Barra base
-   4. Info (nombre + cargo)
-   5. Links de navegación
-   6. Icono de GitHub + botón hamburguesa
-   7. Escritorio: efecto al hacer scroll
-   8. Móvil: menú desplegable
+   1. VARIABLES 
+   2. RESET LOCAL (SOLO DENTRO DEL NAVBAR)
+   3. BARRA NAVBAR GENERAL
+   4. INFO (NOMBRE + CARGO)
+   5. LINKS DE NAVEGACIÓN
+   6. ICONO DE GITHUB, CORREO + BOTON HAMBURGUESA
+   7. ESCRITORIO: EFECTO AL HACER SCROLL
+   8. MÓVIL: MENÚ DESPLEGABLE
+   9. ESCRITORIO: 3ER TIPO DE PANTALLA, MEDIDAS ENTRE: 769PX Y 950PX
    ========================================================================== */
 
 
 /* 1. VARIABLES ------------------------------------------------------------ */
 :root {
-  --nav-bg: #d16f6f;
-  --nav-bg-scroll: #eb9a9a;
-  --nav-title: #222;
-  --nav-subtitle: #666;
-  --nav-link: #555;
-  --nav-link-hover: #007bff;
-  --nav-icon: aliceblue;
-  --nav-burger: #333;
-  --nav-breakpoint: 768px; /* solo de referencia: las media queries no aceptan variables */
+  --nav-bg: #051010;
+  --nav-bg-scroll:#0510107b;
+  --nav-bg-movil:#0510109f;
+  --nav-nombre: #E4E4E7;
+  --nav-subtitulo: #8E949B;
+  --nav-link: #E4E4E7;
+  --nav-link-nombre-hover: #953333;
+  --nav-icono: #E4E4E7;
 }
 
 
@@ -36,8 +36,9 @@
 }
 
 
-/* 3. BARRA BASE ----------------------------------------------------------- */
+/* 3. BARRA NAVBAR GENERAL -------------------------------------------------- */
 .navbar {
+  /* De esta manera la barra del menú se pega arriba de la pantalla al hacer scroll*/
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -61,19 +62,55 @@
 .nav-info {
   display: flex;
   flex-direction: column;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease; /* Suaviza la transparencia del menú al hacer scroll*/
 }
 
-.nav-info h1 {
+/* Propiedades nombre + efecto del hover de de llenado de color*/
+.nav-info .nombre {
+  width: fit-content; /* Toma solo el ancho del nombre y no del div entero para el efecto hover */
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--nav-title);
+  color: var(--nav-nombre);
+
+  /* Creamos un degradado con dos colores:
+   el color que aparecerá al pasar el mouse y el color original.
+   El 90deg indica que los colores van de izquierda a derecha. */
+  background: linear-gradient(
+    90deg,
+    var(--nav-link-nombre-hover) 50%,
+    var(--nav-nombre) 50%
+  );
+
+  /* Hacemos que el degradado tenga el doble del ancho del texto
+   para poder desplazarlo y crear el efecto de movimiento. */
+  background-size: 200% 100%;
+  /* Colocamos el degradado a la derecha para mostrar inicialmente
+   el color original de las letras. */
+  background-position: 100% 0;
+
+  /* Hacemos que el degradado solamente se vea dentro de las letras,
+   en lugar de ocupar todo el fondo del elemento. */
+  background-clip: text;
+  -webkit-background-clip: text;
+  /* Hacemos transparente el color original de las letras
+   para que podamos ver el degradado. */
+  -webkit-text-fill-color: transparent;
+
+  /* Conseguimos que el movimiento del degradado sea suave
+   y dure 1 segundo, tanto al entrar como al retirar el mouse. */
+  transition: background-position 1s ease-in-out;
+}
+
+.nav-info .nombre:hover {
+  /* Desplaza el degradado hacia la izquierda para que el color del hover
+   recorra las letras y cubra todo el texto. */
+  background-position: 0 0;
 }
 
 .nav-info span {
   font-size: 0.85rem;
   font-weight: 400;
-  color: var(--nav-subtitle);
+  color: var(--nav-subtitulo);
 }
 
 
@@ -91,22 +128,25 @@
 }
 
 .nav-links a {
+  display: inline-block;
   text-decoration: none;
   font-weight: 500;
   color: var(--nav-link);
   transition: color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--nav-link-hover);
+  color: var(--nav-link-nombre-hover);
+  transform: scale(1.1);
 }
 
 
-/* 6. ICONO GITHUB + BOTÓN HAMBURGUESA ------------------------------------- */
+/* 6. ICONO DE GITHUB, CORREO + BOTON HAMBURGUESA ------------------------------------- */
 .nav-icono {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 
 .nav-logo {
@@ -114,13 +154,20 @@
 }
 
 .nav-logo a {
-  display: flex; /* evita espacio extra debajo del icono */
+  display: flex; 
   text-decoration: none;
 }
 
 .nav-logo i {
   font-size: 40px;
-  color: var(--nav-icon);
+  color: var(--nav-icono);
+  transition: color 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo i:hover {
+  color: var(--nav-link-nombre-hover);
+  transform: scale(1.2);
 }
 
 /* Oculto en escritorio */
@@ -140,9 +187,24 @@
   display: block;
   width: 100%;
   height: 3px;
-  background-color: var(--nav-burger);
+  background-color: var(--nav-icono);
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+/* Cuando el menú está abierto */
+.menu-barra.active span:nth-child(1) {
+  transform: translateY(8px) rotate(50deg);
+  height: 4px;
+}
+
+.menu-barra.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-barra.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-50deg);
+  height: 4px;
 }
 
 
@@ -194,7 +256,7 @@
     width: 100%;
     margin-top: 0;
     padding: 15px 20px;
-    background-color: var(--nav-bg);
+    background-color: var(--nav-bg-movil);
     border-radius: 0;
     box-shadow: none;
   }
@@ -204,12 +266,17 @@
     pointer-events: auto;
   }
 
+  .nav-icono {
+    gap: 20px;
+  }
+
   .nav-logo i {
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .menu-barra {
     display: flex;
+    margin-left: 5px;
   }
 
   /* Menú vertical, cerrado por defecto */
@@ -225,7 +292,7 @@
     width: 100%;
     padding: 0;
 
-    background-color: var(--nav-bg);
+    background-color: var(--nav-bg-movil);
     border-radius: 0 0 20px 20px;
 
     max-height: 0;
@@ -247,6 +314,20 @@
     opacity: 1;
     visibility: visible;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+/* 9. ESCRITORIO: 3ER TIPO PANTALLA ENTRE 769PX Y 950PX ---------------------------------------------- */
+@media (min-width: 769px) and (max-width: 950px) {
+  .navbar,
+  .navbar.con-scroll:hover {
+    width: 95vw;
+  }
+
+  .navbar.con-scroll {
+    width: 75vw;
+    padding: 10px 40px;
   }
 }
 
