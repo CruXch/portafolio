@@ -49,8 +49,8 @@
   align-items: center;
 
   width: 80vw;
-  margin: 15px auto 0;
-  padding: 15px 40px;
+  margin: 1rem auto 0;
+  padding: 1rem 2.5rem;
 
   background-color: var(--nav-bg);
   border-radius: 30px;
@@ -70,7 +70,7 @@
 .nav-info .nombre {
   width: fit-content; /* Toma solo el ancho del nombre y no del div entero para el efecto hover */
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   font-size: x-large;
   color: var(--nav-nombre);
   font-family: var(--nav-fuente-menu-titulos);
@@ -128,19 +128,18 @@
   transform: translate(-50%, -50%);
 
   display: flex;
-  gap: 30px;
+  gap: 2rem;
   list-style: none;
 }
 
 .nav-links a {
   display: inline-block;
   text-decoration: none;
-  font-weight: 500;
   color: var(--nav-link);
   font-family: var(--nav-fuente-menu-titulos);
   font-size: larger;
-  font-weight: 900;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  transition: color 0.3s ease, font-weight 0.3s ease;
   transition: transform 0.3s ease;
 }
 
@@ -154,7 +153,7 @@
 .nav-icono {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 1.5rem;
 }
 
 .nav-logo {
@@ -167,7 +166,7 @@
 }
 
 .nav-logo i {
-  font-size: 40px;
+  font-size: 2.5rem;
   color: var(--nav-icono);
   transition: color 0.3s ease;
   transition: transform 0.3s ease;
@@ -183,8 +182,8 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 25px;
-  height: 20px;
+  width: 1.5rem;
+  height: 1.25rem;
   padding: 0;
   background: none;
   border: none;
@@ -235,13 +234,23 @@
     pointer-events: none;
   }
 
+  .navbar.con-scroll .nav-links a {
+    font-weight: 400;
+    opacity: 0.5;
+  }
+
   /* Al pasar el mouse (o navegar con teclado), la barra se expande
      y vuelve a mostrar el nombre y el logo */
   .navbar.con-scroll:hover,
   .navbar.con-scroll:focus-within {
     width: 80vw;
-    padding: 15px 40px;
+    padding: 1rem 2.5rem;
     background-color: var(--nav-bg);
+  }
+
+  .navbar.con-scroll:hover .nav-links a {
+    font-weight: 600;
+    opacity: 1;
   }
 
   .navbar.con-scroll:hover .nav-info,
@@ -263,7 +272,7 @@
   .navbar.con-scroll:hover {
     width: 100%;
     margin-top: 0;
-    padding: 15px 20px;
+    padding: 1rem 1.25rem;
     background-color: var(--nav-bg-movil);
     border-radius: 0;
     box-shadow: none;
@@ -275,11 +284,11 @@
   }
 
   .nav-icono {
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   .nav-logo i {
-    font-size: 30px;
+    font-size: 2rem;
   }
 
   .menu-barra {
@@ -296,7 +305,7 @@
 
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
     width: 100%;
     padding: 0;
 
@@ -317,8 +326,8 @@
 
   /* Menú abierto (clase que agrega el JS al tocar la hamburguesa) */
   .nav-links.active {
-    max-height: 300px;
-    padding: 25px 0;
+    max-height: 18.75rem;
+    padding: 1.5rem 0;
     opacity: 1;
     visibility: visible;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
