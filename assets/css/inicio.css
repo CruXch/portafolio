@@ -40,9 +40,12 @@
   hijos dejarían de compararse con los de la niebla. */
   position: relative;
 
-  /* 100vh = 100% del alto de la ventana. El home ocupa
-  exactamente una pantalla completa. */
-  height: 100vh;
+  /* Alto mínimo: una pantalla completa. Si el contenido 
+  es más largo, la sección crece y no se corta.
+  La segunda línea (svh) corrige la altura en móviles; la primera
+  es solo un respaldo. */
+  min-height: 100vh;
+  min-height: 100svh;
 
   /* Ocupa todo el ancho disponible. */
   width: 100%;
@@ -170,4 +173,36 @@
 .boton-cv:focus-visible {
   outline: 2px solid var(--ini-hover-borde);
   outline-offset: 3px;
+}
+
+
+/* 8. MÓVIL ---------------------------------------------- */
+@media (max-width: 768px) {
+  .inicio{
+    align-items: end;
+    bottom: 3rem;
+    overflow: visible;
+  }
+
+  .inicio-caja {
+    max-width: 30rem;
+    top: 25rem;
+    margin: auto;
+  }
+
+  .inicio-caja h1 {
+    text-align: center;
+  }
+
+  .inicio-caja p {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .boton-cv {
+    max-width: 15rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
 }
