@@ -7,6 +7,9 @@
    4. RESPONSIVE DE IMAGEN CENTRAL 
    5. CONFIGURACIÓN DIV TEXTO INICIO - H1, SPAN Y P
    6. CONFIGURACIÓN BOTÓN DESCARGAR CV
+   7. MÓVIL
+   8. ESCRITORIO: 3ER TIPO PANTALLA ENTRE 769PX Y 990PX
+   9. ESCRITORIO: 4TO TIPO PANTALLA ENTRE 990PX Y 1360PX
    ========================================================================== */
 
 
@@ -130,7 +133,7 @@
 .inicio-caja h1 {
   font-family: var(--ini-fuente-titulo);
   font-weight: 600;
-  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   color: var(--ini-color-h1);
   margin-bottom: 2rem;
 }
@@ -176,7 +179,7 @@
 }
 
 
-/* 8. MÓVIL ---------------------------------------------- */
+/* 7. MÓVIL ---------------------------------------------- */
 @media (max-width: 768px) {
   .inicio{
     align-items: end;
@@ -206,3 +209,23 @@
     margin: auto;
   }
 }
+
+
+/* 8. ESCRITORIO: 3ER TIPO PANTALLA ENTRE 769PX Y 990PX  ---------------------------------------------- */
+@media (min-width: 769px) and (max-width: 990px) {
+  .inicio-caja {
+    width: clamp(20rem, 50vw, 45rem);
+    margin-left: clamp(1rem, 6vw, 12.5rem);
+}
+}
+
+
+/* 9. ESCRITORIO: 4TO TIPO PANTALLA ENTRE 990PX Y 1360PX  ---------------------------------------------- */
+@media (min-width: 990px) and (max-width: 1360px) {
+  .inicio-caja {
+    width: clamp(25rem, 50vw, 45rem);
+    margin-left: clamp(2.5rem, 9vw, 12.5rem);   
+}
+}
+
+
