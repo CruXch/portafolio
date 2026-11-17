@@ -1,13 +1,25 @@
 /* ==========================================================================
    Inicio – David Pérez
    Estructura del archivo:
-
-   5. CONFIGURACIÓN DE IMAGEN CENTRAL
-   6. RESPONSIVE DE IMAGEN CENTRAL 
+   1. VARIABLES
+   2. RESET LOCAL
+   3. CONFIGURACIÓN DE IMAGEN CENTRAL
+   4. RESPONSIVE DE IMAGEN CENTRAL 
+   5. CONFIGURACIÓN DIV TEXTO INICIO - H1, SPAN Y P
+   6. CONFIGURACIÓN BOTÓN DESCARGAR CV
    ========================================================================== */
 
 
-
+/* 1. VARIABLES ------------------------------------------------------------ */
+:root {
+  --ini-fuente-texto: "Afacad", sans-serif;
+  --ini-fuente-titulo: "Bellefair", serif;
+  --ini-color-span-borde: #8E949B;
+  --ini-color-boton-p: #E4E4E7;
+  --ini-color-h1: #953333b9;
+  --ini-hover-borde: #953333;
+  --ini-fondo-boton: #051010;
+}
 
 /* 2. RESET LOCAL ---------------------------------------------------------- */
 .inicio h1,
@@ -17,7 +29,7 @@
   padding: 0;
 }
 
-/* 5. CONFIGURACIÓN DE IMAGEN CENTRAL ----------------------------------------------- */
+/* 3. CONFIGURACIÓN DE IMAGEN CENTRAL ----------------------------------------------- */
 .inicio {
   /* relative convierte a imgCentral en el "punto de referencia" de sus hijos.
   Los elementos con position: absolute de adentro (.imgVentana)
@@ -83,7 +95,7 @@
 }
 
 
-/* 6. RESPONSIVE DE IMAGEN CENTRAL ----------------------------------------------- */
+/* 4. RESPONSIVE DE IMAGEN CENTRAL ----------------------------------------------- */
 @media (max-width: 768px){
 
 .img-ventana{
@@ -93,59 +105,69 @@
   
 }
 
+
+/* 5. CONFIGURACIÓN DIV TEXTO INICIO - H1, SPAN Y P ----------------------------------------------- */
 .inicio-caja {
   position: relative; 
   z-index: 2; 
-  max-width: 40rem;
+  max-width: 45rem;
   margin-left: 12.5rem;
-  margin-top: -3.1rem;
-}
-
-.inicio-caja h1 {
-  font-family: "Bellefair", serif;
-  font-weight: 400;
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  color: #953333;
-  margin-bottom: 1.25rem;
+  margin-top: -3rem;
 }
 
 .inicio-caja h1 span {
   display: block;
-  font-family: "Afacad", sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  color: #8E949B;
+  font-family: var(--ini-fuente-texto);
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  color: var(--ini-color-span-borde);
   margin-bottom: 0.5rem;
 }
 
+.inicio-caja h1 {
+  font-family: var(--ini-fuente-titulo);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  color: var(--ini-color-h1);
+  margin-bottom: 2rem;
+}
+
 .inicio-caja p {
-  font-family: "Afacad", sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #E4E4E7;
-  margin: 0 0 2rem;
+  font-family: var(--ini-fuente-texto);
+  font-size: x-large;
+
+  /* Este es el espacio de separacion dentro del párrafo*/
+  line-height: 1.5;
+  color: var(--ini-color-boton-p);
+  margin-bottom: 2.5rem;
   text-align: justify;
 }
 
+
+/* 6. CONFIGURACIÓN BOTÓN DESCARGAR CV ----------------------------------------------- */
 .boton-cv {
   display: inline-block;
   padding: 0.85rem 1.75rem;   /* alto táctil cómodo (≥ 44 px) */
-  font-family: "Afacad", sans-serif;
-  font-size: 1rem;
-  color: #E4E4E7;
+  font-family: var(--ini-fuente-texto);
+  font-size:x-large;
+  color: var(--ini-color-boton-p);
   text-decoration: none;
-  border: 1px solid #8E949B;
+  border: 1px solid var(--ini-color-span-borde);
   border-radius: 4px;
-  background: transparent;
-  transition: background-color 0.3s, border-color 0.3s;
+  background: var(--ini-fondo-boton);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease
 }
 
 .boton-cv:hover {
-  background: rgba(228, 228, 231, 0.08);
-  border-color: #E4E4E7;
+  background: transparent;
+  border-color: var(--ini-hover-borde);
+  color: var(--ini-hover-borde);
+  transform: scale(1.1);
 }
 
+/* Muestra un contorno cuando el botón recibe el foco mediante el teclado, EJ:TAB */
 .boton-cv:focus-visible {
-  outline: 2px solid #E4E4E7;
+  outline: 2px solid var(--ini-hover-borde);
   outline-offset: 3px;
 }
