@@ -181,16 +181,40 @@
 
 /* 7. MÓVIL ---------------------------------------------- */
 @media (max-width: 768px) {
-  .inicio{
-    align-items: end;
-    bottom: 3rem;
-    overflow: visible;
+  .inicio {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 100svh;
+    height: auto;
+
+    overflow: hidden;
   }
 
+  /* La imagen ahora ocupa espacio real */
+  /*Se cambia de absolute a relative para que también
+    tenga un espacio que se cuenta en el flex y el texto
+    no se ponga encima de la imagen*/
+  .img-ventana {
+    position: relative;
+    top: -4rem;
+    width: 100%;
+    height: 90svh;
+  }
+
+  /* El contenido aparece debajo de la imagen */
   .inicio-caja {
+    position: relative;
+    z-index: 2;
+    top: -10rem;
     max-width: 30rem;
-    top: 25rem;
-    margin: auto;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
   }
 
   .inicio-caja h1 {
@@ -198,15 +222,14 @@
   }
 
   .inicio-caja p {
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin: 1rem;
   }
 
   .boton-cv {
     max-width: 15rem;
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 2rem auto;
   }
 }
 
