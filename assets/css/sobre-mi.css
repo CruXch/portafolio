@@ -1,0 +1,28 @@
+
+
+
+
+
+.sobre-mi {
+    position: relative;
+}
+
+.sobre-mi-caja {
+    display: flex;
+
+}
+
+
+.sobre-mi p:first-child {
+    color: aliceblue;
+    font-size: x-large;
+    width: 50%;
+    background-color: brown;
+}
+
+.sobre-mi p:last-child {
+    color: aquamarine;
+    font-size: xx-large;
+    width: 50%;
+    background-color: rgb(241, 70, 193);
+}
