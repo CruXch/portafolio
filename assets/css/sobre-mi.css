@@ -1,28 +1,214 @@
+/* =====================================================
+   SOBRE MÍ
+   ===================================================== */
 
-
-
-
-
+/* ===== SECCIÓN ===== */
 .sobre-mi {
-    position: relative;
+  padding: 6rem 1.25rem;
+  scroll-margin-top: 5rem; /* ajusta a la altura real de tu nav */
+}
+
+.sobre-mi-titulo {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  text-align: center;
+  margin: 0 0 3.5rem;
+  color: #953333;
 }
 
 .sobre-mi-caja {
-    display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
 
+/* ===== DESCRIPCIÓN ===== */
+.sobre-mi-descripcion {
+  max-width: 60ch;
+}
+
+.sobre-mi-descripcion p {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #E4E4E7;
+}
+
+.sobre-mi-descripcion p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== HABILIDADES ===== */
+.sobre-mi-subtitulo {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.9rem;
+  margin: 0 0 1.5rem;
+  color: #953333;
+  text-align: center;
+}
+
+.habilidades-caja-back,
+.habilidades-caja-herramientas {
+  margin-top: 1.75rem;
+}
+
+.habilidades-subtitulo-front,
+.habilidades-subtitulo-back,
+.habilidades-subtitulo-herramientas {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #8E949B;
+  margin: 0 0 .75rem;
+}
+
+.habilidades-front,
+.habilidades-back,
+.habilidades-herramientas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* columnas automáticas: agregar una tarjeta no rompe el diseño */
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: .75rem;
+}
+
+/* ===== TARJETA ===== */
+.habilidad-front,
+.habilidad-back,
+.habilidad-herramienta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+  padding: 1rem .5rem .85rem;
+  background: rgba(228, 228, 231, .03);
+  border: 1px solid #3F444E;
+  border-radius: 10px;
+  text-align: center;
+  font-size: .85rem;
+  color: #E4E4E7;
+  transition: border-color .3s ease, background-color .3s ease;
+}
+
+/* línea fina de acento, solo visible en hover */
+.habilidad-front::after,
+.habilidad-back::after,
+.habilidad-herramienta::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  bottom: -1px;
+  height: 2px;
+  background: #953333;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+/* ===== LOGO MONOCROMO (SVG como máscara) =====
+   El color lo da background-color; el logo se define con --logo */
+.tecnologia-front,
+.tecnologia-back,
+.tecnologia-herramienta {
+  width: 40px;
+  height: 40px;
+  background-color: #8E949B;
+  -webkit-mask: var(--logo, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 6l-6 6 6 6M16 6l6 6-6 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E")) center / contain no-repeat;
+          mask: var(--logo, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 6l-6 6 6 6M16 6l6 6-6 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E")) center / contain no-repeat;
+  transition: background-color .3s ease;
+}
+
+/* ===== ASIGNACIÓN DE LOGOS (por posición) =====
+   Rutas relativas a ESTE archivo css. Si el css está en /css y los
+   svg en /img, queda "../img/...". Si el orden de los <li> cambia,
+   cambia aquí también. */
+.habilidades-front .habilidad-front:nth-child(1) { --logo: url("../img/html5.svg"); }
+.habilidades-front .habilidad-front:nth-child(2) { --logo: url("../img/css3.svg"); }
+.habilidades-front .habilidad-front:nth-child(3) { --logo: url("../img/javascript.svg"); }
+.habilidades-front .habilidad-front:nth-child(4) { --logo: url("../img/typescript.svg"); }
+.habilidades-front .habilidad-front:nth-child(5) { --logo: url("../img/react.svg"); }
+
+.habilidades-back .habilidad-back:nth-child(1) { --logo: url("../img/php.svg"); }
+.habilidades-back .habilidad-back:nth-child(2) { --logo: url("../img/mysql.svg"); }
+.habilidades-back .habilidad-back:nth-child(3) { --logo: url("../img/mariadb.svg"); }
+
+.habilidades-herramientas .habilidad-herramienta:nth-child(1) { --logo: url("../img/git.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(2) { --logo: url("../img/github.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(3) { --logo: url("../img/glpi.svg"); }
+
+/* ===== HOVER (solo donde existe; en móvil nada depende de él) ===== */
+@media (hover: hover) {
+  .habilidad-front:hover,
+  .habilidad-back:hover,
+  .habilidad-herramienta:hover {
+    border-color: #8E949B;
+    background: #051010;
+    z-index: 2;
+  }
+
+  .habilidad-front:hover::after,
+  .habilidad-back:hover::after,
+  .habilidad-herramienta:hover::after {
+    opacity: 1;
+  }
+
+  .habilidad-front:hover .tecnologia-front,
+  .habilidad-back:hover .tecnologia-back,
+  .habilidad-herramienta:hover .tecnologia-herramienta {
+    background-color: #E4E4E7;
+  }
+}
+
+/* ===== ESCRITORIO ===== */
+@media (min-width: 900px) {
+  .sobre-mi {
+    padding: 8rem 2rem;
+  }
+
+  .sobre-mi-caja {
+    flex-direction: row;   /* descripción izquierda, habilidades derecha */
+    align-items: center;   /* centra verticalmente la descripción respecto a habilidades */
+    gap: 5rem;
+  }
+
+  .sobre-mi-descripcion {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sobre-mi-habilidades {
+    flex: 1.15;
+    min-width: 0;
+  }
+
+  .habilidades-front,
+  .habilidades-back,
+  .habilidades-herramientas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== MOVIMIENTO REDUCIDO ===== */
+@media (prefers-reduced-motion: reduce) {
+  .habilidad-front,
+  .habilidad-back,
+  .habilidad-herramienta,
+  .habilidad-front::after,
+  .habilidad-back::after,
+  .habilidad-herramienta::after,
+  .tecnologia-front,
+  .tecnologia-back,
+  .tecnologia-herramienta {
+    transition: none;
+  }
 }
 
 
-.sobre-mi p:first-child {
-    color: aliceblue;
-    font-size: x-large;
-    width: 50%;
-    background-color: brown;
-}
 
-.sobre-mi p:last-child {
-    color: aquamarine;
-    font-size: xx-large;
-    width: 50%;
-    background-color: rgb(241, 70, 193);
-}
+
