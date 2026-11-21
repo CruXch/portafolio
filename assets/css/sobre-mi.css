@@ -1,68 +1,93 @@
-/* =====================================================
-   SOBRE MÍ
-   ===================================================== */
+/* ==========================================================================
+   Sobre Mi – David Pérez
+   Estructura del archivo (escritorio primero, móvil al final):
+   1. VARIABLES
+   2. SECCIÓN Y TÍTULO
+   3. DESCRIPCIÓN
+   4. HABILIDADES (subtítulos, listas, tarjetas, logos)
+   5. HOVER
+   6. MOVIMIENTO REDUCIDO
+   7. MÓVIL (max-width: 768px)
+   ========================================================================== */
 
-/* ===== SECCIÓN ===== */
+
+/* 1. VARIABLES ------------------------------------------------------------ */
+:root {
+  --sb-fuente-texto: "Afacad", sans-serif;
+  --sb-fuente-titulo: "Bellefair", serif;
+  --sb-color-titulo: #953333;
+  --sb-color-texto: #E4E4E7;
+  --sb-color-fondo-tarjeta: #051010;
+  --sb-color-tarjeta-borde: #8E949B;
+}
+
+
+/* 2. SECCIÓN Y TÍTULO (escritorio) ---------------------------------------- */
 .sobre-mi {
-  padding: 6rem 1.25rem;
-  scroll-margin-top: 5rem; /* ajusta a la altura real de tu nav */
+  padding: 5rem 2rem;
 }
 
 .sobre-mi-titulo {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
+  font-family: var(--sb-fuente-titulo);
+  font-weight: 400;
   font-size: clamp(2.4rem, 6vw, 3.6rem);
   text-align: center;
   margin: 0 0 3.5rem;
-  color: #953333;
+  color: var(--sb-color-titulo);
 }
 
 .sobre-mi-caja {
-  max-width: 1100px;
+  max-width: 1140px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  flex-direction: row;   /* descripción izquierda, habilidades derecha */
+  align-items: center;   /* centra verticalmente la descripción respecto a habilidades */
+  gap: 6rem;
 }
 
-/* ===== DESCRIPCIÓN ===== */
+
+/* 3. DESCRIPCIÓN ---------------------------------------------------------- */
 .sobre-mi-descripcion {
-  max-width: 60ch;
+  flex: 1;
+  max-width: 100rem;
 }
 
 .sobre-mi-descripcion p {
+  font-family: var(--sb-fuente-texto);
   margin: 0 0 1.25rem;
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: #E4E4E7;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--sb-color-texto);
 }
 
-.sobre-mi-descripcion p:last-child {
-  margin-bottom: 0;
-}
 
-/* ===== HABILIDADES ===== */
-.sobre-mi-subtitulo {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
-  font-size: 1.9rem;
-  margin: 0 0 1.5rem;
-  color: #953333;
-  text-align: center;
+/* 4. HABILIDADES ---------------------------------------------------------- */
+.sobre-mi-habilidades {
+  flex: 1;
+  margin-top: 2rem;
 }
 
 .habilidades-caja-back,
 .habilidades-caja-herramientas {
-  margin-top: 1.75rem;
+  margin-top: 2rem;
 }
 
 .habilidades-subtitulo-front,
 .habilidades-subtitulo-back,
 .habilidades-subtitulo-herramientas {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #8E949B;
-  margin: 0 0 .75rem;
+  font-family: var(--sb-fuente-texto);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sb-color-titulo);
+  margin: 0 0 1rem;
+}
+
+.habilidades-subtitulo-back {
+  text-align: center;
+}
+
+.habilidades-subtitulo-herramientas {
+  text-align: right;
 }
 
 .habilidades-front,
@@ -72,31 +97,34 @@
   margin: 0;
   padding: 0;
   display: grid;
-  /* columnas automáticas: agregar una tarjeta no rompe el diseño */
-  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
-  gap: .75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 /* ===== TARJETA ===== */
 .habilidad-front,
 .habilidad-back,
 .habilidad-herramienta {
+  font-family: var(--sb-fuente-texto);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .6rem;
-  padding: 1rem .5rem .85rem;
-  background: rgba(228, 228, 231, .03);
-  border: 1px solid #3F444E;
-  border-radius: 10px;
+  gap: 1rem;
+  padding: 1rem .5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--sb-color-tarjeta-borde);
+  border-radius: 30px;
   text-align: center;
-  font-size: .85rem;
-  color: #E4E4E7;
+  font-size: 1rem;
+  color: var(--sb-color-texto);
   transition: border-color .3s ease, background-color .3s ease;
 }
 
 /* línea fina de acento, solo visible en hover */
+/* ::after permite crear un elemento adicional mediante CSS, 
+   sin escribir HTML. Se utiliza principalmente para agregar 
+   detalles decorativos como líneas, iconos o efectos visuales. */
 .habilidad-front::after,
 .habilidad-back::after,
 .habilidad-herramienta::after {
@@ -106,7 +134,7 @@
   right: 22%;
   bottom: -1px;
   height: 2px;
-  background: #953333;
+  background: var(--sb-color-titulo);
   opacity: 0;
   transition: opacity .3s ease;
 }
@@ -118,38 +146,40 @@
 .tecnologia-herramienta {
   width: 40px;
   height: 40px;
-  background-color: #8E949B;
+  border-radius: 10px;
+  background-color: var(--sb-color-tarjeta-borde);
   -webkit-mask: var(--logo, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 6l-6 6 6 6M16 6l6 6-6 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E")) center / contain no-repeat;
           mask: var(--logo, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 6l-6 6 6 6M16 6l6 6-6 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E")) center / contain no-repeat;
-  transition: background-color .3s ease;
+  transition: background-color .2s ease;
 }
 
-/* ===== ASIGNACIÓN DE LOGOS (por posición) =====
-   Rutas relativas a ESTE archivo css. Si el css está en /css y los
-   svg en /img, queda "../img/...". Si el orden de los <li> cambia,
-   cambia aquí también. */
-.habilidades-front .habilidad-front:nth-child(1) { --logo: url("../img/html5.svg"); }
-.habilidades-front .habilidad-front:nth-child(2) { --logo: url("../img/css3.svg"); }
-.habilidades-front .habilidad-front:nth-child(3) { --logo: url("../img/javascript.svg"); }
-.habilidades-front .habilidad-front:nth-child(4) { --logo: url("../img/typescript.svg"); }
-.habilidades-front .habilidad-front:nth-child(5) { --logo: url("../img/react.svg"); }
+/* ===== ASIGNACIÓN DE LOGOS (por posición) ===== */
+.habilidades-front .habilidad-front:nth-child(1) { --logo: url("../icons/html5.svg"); }
+.habilidades-front .habilidad-front:nth-child(2) { --logo: url("../icons/css.svg"); }
+.habilidades-front .habilidad-front:nth-child(3) { --logo: url("../icons/javascript.svg"); }
+.habilidades-front .habilidad-front:nth-child(4) { --logo: url("../icons/typescript.svg"); }
+.habilidades-front .habilidad-front:nth-child(5) { --logo: url("../icons/react.svg"); }
 
-.habilidades-back .habilidad-back:nth-child(1) { --logo: url("../img/php.svg"); }
-.habilidades-back .habilidad-back:nth-child(2) { --logo: url("../img/mysql.svg"); }
-.habilidades-back .habilidad-back:nth-child(3) { --logo: url("../img/mariadb.svg"); }
+.habilidades-back .habilidad-back:nth-child(1) { --logo: url("../icons/nodedotjs.svg"); }
+.habilidades-back .habilidad-back:nth-child(2) { --logo: url("../icons/php.svg"); }
+.habilidades-back .habilidad-back:nth-child(3) { --logo: url("../icons/mysql.svg"); }
+.habilidades-back .habilidad-back:nth-child(4) { --logo: url("../icons/mariadb.svg"); }
 
-.habilidades-herramientas .habilidad-herramienta:nth-child(1) { --logo: url("../img/git.svg"); }
-.habilidades-herramientas .habilidad-herramienta:nth-child(2) { --logo: url("../img/github.svg"); }
-.habilidades-herramientas .habilidad-herramienta:nth-child(3) { --logo: url("../img/glpi.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(1) { --logo: url("../icons/git.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(2) { --logo: url("../icons/github.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(3) { --logo: url("../icons/figma.svg"); }
+.habilidades-herramientas .habilidad-herramienta:nth-child(4) { --logo: url("../icons/glpi.svg"); }
 
-/* ===== HOVER (solo donde existe; en móvil nada depende de él) ===== */
+
+/* 5. HOVER --------------- */
 @media (hover: hover) {
   .habilidad-front:hover,
   .habilidad-back:hover,
   .habilidad-herramienta:hover {
-    border-color: #8E949B;
-    background: #051010;
+    border-color: var(--sb-color-fondo-tarjeta);
+    background: var(--sb-color-fondo-tarjeta);
     z-index: 2;
+    color: var(--sb-color-titulo);
   }
 
   .habilidad-front:hover::after,
@@ -161,40 +191,12 @@
   .habilidad-front:hover .tecnologia-front,
   .habilidad-back:hover .tecnologia-back,
   .habilidad-herramienta:hover .tecnologia-herramienta {
-    background-color: #E4E4E7;
+    background-color: var(--sb-color-titulo);
   }
 }
 
-/* ===== ESCRITORIO ===== */
-@media (min-width: 900px) {
-  .sobre-mi {
-    padding: 8rem 2rem;
-  }
 
-  .sobre-mi-caja {
-    flex-direction: row;   /* descripción izquierda, habilidades derecha */
-    align-items: center;   /* centra verticalmente la descripción respecto a habilidades */
-    gap: 5rem;
-  }
-
-  .sobre-mi-descripcion {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .sobre-mi-habilidades {
-    flex: 1.15;
-    min-width: 0;
-  }
-
-  .habilidades-front,
-  .habilidades-back,
-  .habilidades-herramientas {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ===== MOVIMIENTO REDUCIDO ===== */
+/* 6. MOVIMIENTO REDUCIDO EN APLICACIONES -------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .habilidad-front,
   .habilidad-back,
@@ -207,6 +209,38 @@
   .tecnologia-herramienta {
     transition: none;
   }
+}
+
+
+/* 7. MÓVIL (hasta 768px) -------------------------------------------------- */
+@media (max-width: 768px) {
+  .sobre-mi {
+    padding: 5rem 1.25rem;
+  }
+
+  .sobre-mi-caja {
+    flex-direction: column;  /* descripción primero, habilidades después */
+    align-items: stretch;
+    gap: 3rem;
+  }
+
+  .sobre-mi-descripcion,
+  .sobre-mi-habilidades {
+    flex: none;
+  }
+
+  .habilidades-front,
+  .habilidades-back,
+  .habilidades-herramientas {
+    /* columnas automáticas: agregar una tarjeta no rompe el diseño */
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  }
+
+  .habilidades-subtitulo-front,
+  .habilidades-subtitulo-herramientas {
+  text-align: center;
+  }
+
 }
 
 
