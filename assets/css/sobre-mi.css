@@ -6,8 +6,7 @@
    3. DESCRIPCIÓN
    4. HABILIDADES (subtítulos, listas, tarjetas, logos)
    5. HOVER
-   6. MOVIMIENTO REDUCIDO
-   7. MÓVIL (max-width: 768px)
+   6. MÓVIL (max-width: 768px)
    ========================================================================== */
 
 
@@ -16,6 +15,7 @@
   --sb-fuente-texto: "Afacad", sans-serif;
   --sb-fuente-titulo: "Bellefair", serif;
   --sb-color-titulo: #953333;
+  --sb-color-subtitulo: #C85A5A;
   --sb-color-texto: #E4E4E7;
   --sb-color-fondo-tarjeta: #051010;
   --sb-color-tarjeta-borde: #8E949B;
@@ -78,7 +78,7 @@
   font-family: var(--sb-fuente-texto);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--sb-color-titulo);
+  color: var(--sb-color-subtitulo);
   margin: 0 0 1rem;
 }
 
@@ -196,23 +196,7 @@
 }
 
 
-/* 6. MOVIMIENTO REDUCIDO EN APLICACIONES -------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  .habilidad-front,
-  .habilidad-back,
-  .habilidad-herramienta,
-  .habilidad-front::after,
-  .habilidad-back::after,
-  .habilidad-herramienta::after,
-  .tecnologia-front,
-  .tecnologia-back,
-  .tecnologia-herramienta {
-    transition: none;
-  }
-}
-
-
-/* 7. MÓVIL (hasta 768px) -------------------------------------------------- */
+/* 6. MÓVIL (hasta 768px) -------------------------------------------------- */
 @media (max-width: 768px) {
   .sobre-mi {
     padding: 5rem 1.25rem;
