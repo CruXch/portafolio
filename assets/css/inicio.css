@@ -152,11 +152,13 @@
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+@media (hover:hover) {
 .boton-cv:hover {
   background: transparent;
   border-color: var(--ini-hover-borde);
   color: var(--ini-hover-borde);
   transform: scale(1.1);
+}
 }
 
 /* Muestra un contorno cuando el botón recibe el foco mediante el teclado, EJ:TAB */

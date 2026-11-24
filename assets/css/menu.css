@@ -172,9 +172,11 @@
   transition: transform 0.3s ease;
 }
 
+@media (hover:hover) {
 .nav-logo i:hover {
   color: var(--nav-link-nombre-hover);
   transform: scale(1.2);
+}
 }
 
 /* Oculto en escritorio */

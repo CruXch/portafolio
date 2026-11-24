@@ -1,0 +1,175 @@
+
+
+
+:root {
+ --pr-fuente-texto: "Afacad", sans-serif;
+ --pr-fuente-titulo: "Bellefair", serif;
+ --pr-color-titulo: #953333;        /* igual que --sb-color-titulo; solo para título de sección y acento */
+ --pr-color-texto-rojo: #C85A5A;    /* pon aquí el rojo claro que ya elegiste */
+ --pr-color-texto: #E4E4E7;
+ --pr-color-borde: #8E949B;
+ --pr-color-fondo-hover: #051010;
+ --pr-color-etiqueta-borde: #3F444E;
+}
+
+
+/* 1. SECCIÓN Y TÍTULO */
+.proyectos {
+  padding: 5rem 2rem;
+}
+
+.proyectos-titulo {
+  font-family: var(--pr-fuente-titulo);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  text-align: center;
+  margin: 0 0 3.5rem;
+  color: var(--pr-color-titulo);
+}
+
+.proyectos-caja {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* 2. CUADRÍCULA */
+.proyectos-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 3. TARJETA */
+.proyecto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: transparent;
+  border: 5px solid var(--pr-color-borde);
+  border-radius: 20px;
+  font-family: var(--pr-fuente-texto);
+  color: var(--pr-color-texto);
+  cursor: pointer;
+  transition: border-color .3s ease, background-color .3s ease;
+}
+
+/* TAMAÑO IMAGENES AQUI: 1280×720 (16:9) .webp*/
+.proyecto-imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.proyecto-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+/* 4. NOMBRE + BOTÓN ESTIRADO */
+.proyecto-nombre {
+  margin: 0 0 .75rem;
+  font-family: var(--pr-fuente-titulo);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.proyecto-boton {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--pr-color-texto-rojo);
+  text-align: left;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+/* cubre toda la tarjeta: cualquier clic activa el botón */
+.proyecto-boton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* el foco se pinta en toda la tarjeta, no en el botón */
+.proyecto-boton:focus-visible {
+  outline: none;
+}
+
+.proyecto:has(.proyecto-boton:focus-visible) {
+  outline: 2px solid var(--pr-color-texto-rojo);
+  outline-offset: 3px;
+}
+
+/* 5. DESCRIPCIÓN, TECNOLOGÍAS E INDICACIÓN */
+.proyecto-descripcion {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.proyecto-tecnologias {
+  list-style: none;
+  margin: auto 0 0;      /* auto empuja este bloque hacia abajo */
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.proyecto-tecnologias li {
+  padding: .2rem .75rem;
+  font-size: .9rem;
+  color: var(--pr-color-borde);
+  border: 1px solid var(--pr-color-etiqueta-borde);
+  border-radius: 999px;
+}
+
+.proyecto-indicacion {
+  margin-top: 1rem;
+  font-size: .95rem;
+  letter-spacing: .05rem;
+  color: var(--pr-color-borde);
+}
+
+/* línea fina de acento, solo visible en hover */
+
+
+/* 6. HOVER */
+@media (hover: hover) {
+  .proyecto:hover {
+    border-color: var(--pr-color-fondo-hover);
+    background: var(--pr-color-fondo-hover);
+    z-index: 2;
+    border-color: #953333;
+  }
+}
+
+/* 7. MOVIMIENTO REDUCIDO */
+@media (prefers-reduced-motion: reduce) {
+  .proyecto,
+  .proyecto-boton,
+  .proyecto::after {
+    transition: none;
+  }
+}
+
+/* 8. MÓVIL */
+@media (max-width: 768px) {
+  .proyectos {
+    padding: 5rem 1.25rem;
+  }
+
+  .proyectos-lista {
+    grid-template-columns: 1fr;
+  }
+}
