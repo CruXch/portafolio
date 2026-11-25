@@ -1,6 +1,18 @@
+/* ==========================================================================
+   Sobre Mi – David Pérez
+   Estructura del archivo (escritorio primero, móvil al final):
+   1. VARIABLES
+   2. SECCIÓN Y TÍTULO
+   3. CUADRICULA
+   4. TARJETA
+   5. NOMBRE Y BOTÓN ESTIRADO
+   6. DESCRIPCIÓN, TECNOLOGIAS Y VER MAS
+   7. HOVER
+   8. MÓVIL
+   ========================================================================== */
 
 
-
+/* 1. VARIABLES ------------------------------------------------------------ */
 :root {
  --pr-fuente-texto: "Afacad", sans-serif;
  --pr-fuente-titulo: "Bellefair", serif;
@@ -13,7 +25,7 @@
 }
 
 
-/* 1. SECCIÓN Y TÍTULO */
+/* 2. SECCIÓN Y TÍTULO ------------------------------------------------------------ */
 .proyectos {
   padding: 5rem 2rem;
 }
@@ -32,7 +44,7 @@
   margin: 0 auto;
 }
 
-/* 2. CUADRÍCULA */
+/* 3. CUADRICULA ------------------------------------------------------------ */
 .proyectos-lista {
   list-style: none;
   display: grid;
@@ -45,7 +57,7 @@
   gap: 2rem;
 }
 
-/* 3. TARJETA */
+/* 4. TARJETA ------------------------------------------------------------ */
 .proyecto {
   position: relative;
   display: flex;
@@ -64,7 +76,10 @@
 .proyecto-imagen {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  /* Evita que el elemento reduzca su tamaño
+   cuando falta espacio en el contenedor Flexbox. */
+  flex-shrink: 0;
   object-fit: contain;
 }
 
@@ -75,7 +90,7 @@
   padding: 1.25rem;
 }
 
-/* 4. NOMBRE + BOTÓN ESTIRADO */
+/* 5. NOMBRE Y BOTÓN ESTIRADO ------------------------------------------------------------ */
 .proyecto-nombre {
   text-align: center;
   margin: 0 0 1rem;
@@ -121,7 +136,7 @@
   outline-offset: 3px;
 }
 
-/* 5. DESCRIPCIÓN, TECNOLOGÍAS E INDICACIÓN */
+/* 6. DESCRIPCIÓN, TECNOLOGIAS Y VER MAS ------------------------------------------------------------ */
 .proyecto-descripcion {
   margin: 0 0 1rem;
   font-size: 1.25rem;
@@ -155,7 +170,7 @@
 /* línea fina de acento, solo visible en hover */
 
 
-/* 6. HOVER */
+/* 7. HOVER ------------------------------------------------------------ */
 @media (hover: hover) {
   .proyecto:hover {
     border-color: var(--pr-color-fondo-hover);
@@ -165,16 +180,8 @@
   }
 }
 
-/* 7. MOVIMIENTO REDUCIDO */
-@media (prefers-reduced-motion: reduce) {
-  .proyecto,
-  .proyecto-boton,
-  .proyecto::after {
-    transition: none;
-  }
-}
 
-/* 8. MÓVIL */
+/* 8. MÓVIL ------------------------------------------------------------ */
 @media (max-width: 768px) {
   .proyectos {
     padding: 5rem 1.25rem;
