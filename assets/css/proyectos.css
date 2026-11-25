@@ -35,11 +35,14 @@
 /* 2. CUADRÍCULA */
 .proyectos-lista {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
+  /* Crea automáticamente tantas columnas como quepan en el contenedor.
+   Cada columna tendrá un mínimo de 300px y crecerá proporcionalmente
+   (1fr) para aprovechar todo el espacio disponible.
+   En este caso el contenedor tiene 1140px, por esto crea 3 columnas
+   y reparte el espacio sobrante entre esas 3 */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* 3. TARJETA */
@@ -74,11 +77,12 @@
 
 /* 4. NOMBRE + BOTÓN ESTIRADO */
 .proyecto-nombre {
-  margin: 0 0 .75rem;
+  text-align: center;
+  margin: 0 0 1rem;
   font-family: var(--pr-fuente-titulo);
   font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.2;
+  font-size: 2rem;
+  line-height: 1.5;
 }
 
 .proyecto-boton {
@@ -86,6 +90,7 @@
   border: 0;
   padding: 0;
   margin: 0;
+  /* Toma la fuente del elemento padre, .proyecto-nombre aquí*/
   font: inherit;
   color: var(--pr-color-texto-rojo);
   text-align: left;
@@ -97,23 +102,29 @@
 .proyecto-boton::after {
   content: "";
   position: absolute;
+  /* El boton ocupará todo el espacio del elemento para que al hacer click
+   sobre cualquier lugar de la tarjeta active el boton*/
   inset: 0;
 }
 
+/* Ajustes para navegación por medio del teclado */
 /* el foco se pinta en toda la tarjeta, no en el botón */
 .proyecto-boton:focus-visible {
+  /* Quita la linea de sombreado del título */
   outline: none;
 }
 
+/* el has pregunta si se cumple lo del parentesis y aplica el
+  estilo en caso de ser asi*/
 .proyecto:has(.proyecto-boton:focus-visible) {
-  outline: 2px solid var(--pr-color-texto-rojo);
+  border: 5px solid var(--pr-color-texto-rojo);
   outline-offset: 3px;
 }
 
 /* 5. DESCRIPCIÓN, TECNOLOGÍAS E INDICACIÓN */
 .proyecto-descripcion {
   margin: 0 0 1rem;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 
@@ -123,15 +134,15 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: 1rem;
 }
 
 .proyecto-tecnologias li {
-  padding: .2rem .75rem;
-  font-size: .9rem;
+  padding: .25rem .75rem;
+  font-size: 1rem;
   color: var(--pr-color-borde);
   border: 1px solid var(--pr-color-etiqueta-borde);
-  border-radius: 999px;
+  border-radius: 30px;
 }
 
 .proyecto-indicacion {
