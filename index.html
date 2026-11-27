@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portafolio David Pérez</title>
-    <link rel="shortcut icon" href="../portafolio/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/general-background-niebla.css" />
     <link rel="stylesheet" href="assets/css/menu.css">
@@ -97,7 +97,7 @@
      <div class="sobre-mi-caja">
 
       <div class="sobre-mi-descripcion">
-        <p>Soy David, un analista y desarrollador de software, colombiano recién graduado del tecnólogo Análisis y Desarrollo de Software del SENA. Me gusta construir sistemas donde el usuario encuentre tanto orden como claridad, y donde por debajo haya un desarrollo seguro y escalable. Aprendo con proyectos propios y cursos, ya llevo un año programando.</p>
+        <p>Soy David, un analista y desarrollador de software colombiano recién graduado del tecnólogo Análisis y Desarrollo de Software del SENA. Me gusta construir sistemas donde el usuario encuentre tanto orden como claridad, y donde por debajo haya un desarrollo seguro y escalable. Aprendo con proyectos propios y cursos, ya llevo un año programando.</p>
         <p>En mis prácticas en la Secretaría de Educación de Yumbo monté y configuré GLPI desde cero como mesa de ayuda y gestión de equipos para las instituciones educativas del municipio, además de esto, desarrollé un plugin propio para ese entorno GLPI. Partí sin conocimiento previo y lo saqué adelante de manera satisfactoria; esa es mi forma de ser ya que cuando me comprometo, lo termino. 
         Busco mi primer empleo como desarrollador, aunque estoy abierto a proyectos freelance o colaboración en proyectos.</p>
       </div>
@@ -144,7 +144,7 @@
      <div class="proyectos-caja">
         <ul class="proyectos-lista">
 
-    
+          <!-- TARJETAS DE PROYECTOS GENERADAS DESDE MAIN.JS -->
 
         </ul>
      </div>
@@ -163,30 +163,26 @@
         <div class="proyectos-modal-cuerpo">
           <h3 class="proyectos-modal-titulo" id="proyectos-modal-titulo">Título del proyecto</h3>
 
-          <div class="proyectos-modal-bloque proyectos-modal-tecnologias">
+          <div class="proyectos-modal-bloque proyectos-modal-tecnologias" data-bloque="tecnologias">
             <h4 class="proyectos-modal-subtitulo">Tecnologías</h4>
             <ul class="proyectos-modal-lista-tecnologias">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
+
             </ul>
           </div>
 
-          <div class="proyectos-modal-bloque proyectos-modal-descripcion">
+          <div class="proyectos-modal-bloque proyectos-modal-descripcion" data-bloque="descripcion">
             <h4 class="proyectos-modal-subtitulo">Descripción</h4>
-            <p class="proyectos-modal-parrafo">Descripción completa del proyecto.</p>
+            <p class="proyectos-modal-parrafo"></p>
           </div>
 
-          <div class="proyectos-modal-bloque proyectos-modal-caracteristicas">
+          <div class="proyectos-modal-bloque proyectos-modal-caracteristicas" data-bloque="caracteristicas">
             <h4 class="proyectos-modal-subtitulo">Características principales</h4>
             <ul class="proyectos-modal-lista">
-              <li>Característica 1</li>
-              <li>Característica 2</li>
-              <li>Característica 3</li>
+
             </ul>
           </div>
 
-          <div class="proyectos-modal-bloque proyectos-modal-capturas">
+          <div class="proyectos-modal-bloque proyectos-modal-capturas" data-bloque="capturas">
             <h4 class="proyectos-modal-subtitulo">Capturas</h4>
             <div class="proyectos-modal-galeria">
               <img src="img/proyectos/captura-1.webp" alt="Captura 1: descripción de lo que se ve" width="1280" height="720">
@@ -198,15 +194,15 @@
           <div class="proyectos-modal-bloque proyectos-modal-enlaces">
             <h4 class="proyectos-modal-subtitulo">Enlaces</h4>
             <ul class="proyectos-modal-lista-enlaces">
-              <li>
+              <li data-enlace="repo">
                 <a href="https://github.com/CruXch/repositorio" target="_blank" rel="noopener noreferrer">
                   <i class="fa-brands fa-github" aria-hidden="true"></i> Repositorio
                 </a>
               </li>
-              <li>
+              <li data-enlace="demo">
                   <a href="https://ejemplo.com" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Ver demo
-                </a>
+                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Ver demo
+                  </a>
               </li>
             </ul>
           </div>

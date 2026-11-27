@@ -10,9 +10,9 @@ const menuScroll = document.getElementById('navbar')
 
 window.addEventListener('scroll', () => {
   if(window.scrollY > 50) {
-    menuScroll.classList.add('con-scroll');
+    menuScroll.classList.add('con-scroll')
   } else{
-    menuScroll.classList.remove('con-scroll');
+    menuScroll.classList.remove('con-scroll')
   }
 });
 
@@ -52,7 +52,6 @@ document.addEventListener('click', (evento) =>{
 
 
 //LÓGICA: GENERAR TARJETAS
-
 //Información de cada tarjeta/modal. Cada objeto del arreglo es una tarjeta/modal
 const datosProyectos = [
   {
@@ -91,14 +90,22 @@ const datosProyectos = [
 ]
 
 
+// Lógica para que se muestren las Tarjetas por cada objeto de arriba.
 const listaProyectos = document.querySelector(".proyectos-lista")
 
 if (listaProyectos) {
+
+  // .map recorre datosProyectos y devuelve una LISTA con un texto HTML por proyecto
   const tarjetas = datosProyectos.map((proyecto) => {
     const tecnologias = proyecto.tecnologias
-      .slice(0, 3)
-      .map((tecnologia) => `<li>${tecnologia}</li>`)
-      .join("")
+
+      .slice(0, 3) // .slice(0, 3) -> toma solo las 3 primeras (el arreglo original no cambia)
+
+      .map((tecnologia) => `<li>${tecnologia}</li>`) // Convierte cada tecnología de tecnologias en un texto: 
+      // "<li>PHP</li> <li>JavaScript/li> <li>CSS</li>"
+
+      .join("") //pega esa lista en UN solo texto, sin nada entre ellos.
+      // Sin el join, JavaScript pondría comas entre los <li>
 
     return `
       <li class="proyecto">
@@ -120,5 +127,64 @@ if (listaProyectos) {
     `
   })
 
-  listaProyectos.innerHTML = tarjetas.join("")
+  listaProyectos.innerHTML = tarjetas.join("") //.join("") los pega en UN solo texto, sin separadores.
 }
+
+
+//LÓGICA: GENERAR MODALES DE TARJETAS
+const dialogoModal = document.querySelector(".proyectos-modal")
+
+if(dialogoModal && listaProyectos) {
+
+  const portadaModal = dialogoModal.querySelector(".proyectos-modal-portada")
+  const tituloModal = dialogoModal.querySelector(".proyectos-modal-titulo")
+  const tecnologiasModal = dialogoModal.querySelector(".proyectos-modal-lista-tecnologias")
+  const parrafoModal = dialogoModal.querySelector(".proyectos-modal-parrafo")
+  const caracteristicasModal = dialogoModal.querySelector(".proyectos-modal-lista")
+  const galeriaModal = dialogoModal.querySelector(".proyectos-modal-galeria")
+
+  const enlaceRepoModal = dialogoModal.querySelector('[data-enlace="repo"]')
+  const enlaceDemoModal = dialogoModal.querySelector('[data-enlace="demo"]')
+  const linkRepoModal = enlaceRepoModal.querySelector("a")
+  const linkDemoModal = enlaceDemoModal.querySelector("a")
+
+  const bloqueTecnologias = dialogoModal.querySelector('[data-bloque="tecnologias"]')
+  const bloqueDescripcion = dialogoModal.querySelector('[data-bloque="descripcion"]')
+  const bloqueCaracteristicas = dialogoModal.querySelector('[data-bloque="caracteristicas"]')
+  const bloqueCapturas = dialogoModal.querySelector('[data-bloque="capturas"]')
+  const bloqueEnlaces = dialogoModal.querySelector('[data-bloque="enlaces"]')
+
+  let botonQueAbrio = null
+
+  listaProyectos.addEventListener("click", (evento) => {
+    const boton = evento.target.closest(".proyecto-boton")
+    if(!boton) return
+    
+    const proyecto = datosProyectos.find((p) => p.id === boton.dataset.proyecto)
+    if(!proyecto) return
+
+    botonQueAbrio = boton
+
+    portadaModal.src = proyecto.imagen
+    portadaModal.alt = proyecto.imagenAlt
+    tituloModal.textContent = proyecto.nombre
+    parrafoModal.textContent = proyecto.descripcion
+    
+    tecnologiasModal.innerHTML = proyecto.tecnologias
+      .map((tecnologia) => `<li>${tecnologia}</li>`)
+      .join("")
+    caracteristicasModal.innerHTML = proyecto.caracteristicas
+      .map((caracteristica) => `<li>${caracteristica}</li>`)
+      .join("")
+    
+
+
+    dialogoModal.showModal()
+    document.body.classList.add('modal-abierto')
+
+  
+
+
+  })
+}
+
