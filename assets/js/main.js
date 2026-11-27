@@ -42,3 +42,83 @@ document.addEventListener('click', (evento) =>{
     menuBarra.classList.remove('active')
   }
 })
+
+
+//-----------------------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------------------//
+//~~~PROYECTOS
+//-----------------------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------------------//
+
+
+//LÓGICA: GENERAR TARJETAS
+
+//Información de cada tarjeta/modal. Cada objeto del arreglo es una tarjeta/modal
+const datosProyectos = [
+  {
+    id: "invenpro",
+    nombre: "InvenPro",
+    descripcionCorta: "Aplicación web que permite crear tomas de inventario ciclicas.",
+    imagen: "assets/img/proyectos/invenpro.webp",
+    imagenAlt: "Portada InvenPro",
+    tecnologias: ["PHP", "JavaScript", "CSS", "HTML", "MySQL"],
+    descripcion: "Aplicación web que permite crear tomas de inventario cíclicas. Enfocada a una empresa del sector harinero (Luego le pongo mas texto)",
+    caracteristicas: ["Varios tipos de usuarios", "Importación de archivos .csv", "Generación de reportes en PDF"],
+    capturas: [
+      { src: "assets/img/proyectos/captura-1.webp", alt: "Foto de prueba" },
+      { src: "assets/img/proyectos/captura-1.webp", alt: "Foto de prueba" }
+    ],
+    repo: "https://github.com/"
+  },
+
+
+  {
+    id: "invenpro2",
+    nombre: "InvenPro2",
+    descripcionCorta: "Aplicación web que permite crear tomas de inventario ciclicas.",
+    imagen: "assets/img/proyectos/invenpro.webp",
+    imagenAlt: "Portada InvenPro",
+    tecnologias: ["PHP", "JavaScript", "CSS", "HTML", "MySQL"],
+    descripcion: "Aplicación web que permite crear tomas de inventario cíclicas. Enfocada a una empresa del sector harinero (Luego le pongo mas texto)",
+    caracteristicas: ["Varios tipos de usuarios", "Importación de archivos .csv", "Generación de reportes en PDF"],
+    capturas: [
+      { src: "assets/img/proyectos/captura-1.webp", alt: "Foto de prueba" },
+      { src: "assets/img/proyectos/captura-1.webp", alt: "Foto de prueba" }
+    ],
+    repo: "https://github.com/"
+  },
+
+]
+
+
+const listaProyectos = document.querySelector(".proyectos-lista")
+
+if (listaProyectos) {
+  const tarjetas = datosProyectos.map((proyecto) => {
+    const tecnologias = proyecto.tecnologias
+      .slice(0, 3)
+      .map((tecnologia) => `<li>${tecnologia}</li>`)
+      .join("")
+
+    return `
+      <li class="proyecto">
+        <img class="proyecto-imagen" src="${proyecto.imagen}" alt="${proyecto.imagenAlt}" width="1280" height="720">
+
+        <div class="proyecto-texto">
+          <h3 class="proyecto-nombre">
+            <button class="proyecto-boton" type="button" aria-haspopup="dialog" data-proyecto="${proyecto.id}">
+              ${proyecto.nombre}
+            </button>
+          </h3>
+          <p class="proyecto-descripcion">${proyecto.descripcionCorta}</p>
+          <ul class="proyecto-tecnologias">
+            ${tecnologias}
+          </ul>
+          <span class="proyecto-indicacion" aria-hidden="true">Ver detalles</span>
+        </div>
+      </li>
+    `
+  })
+
+  listaProyectos.innerHTML = tarjetas.join("")
+}
